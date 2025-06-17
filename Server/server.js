@@ -24,42 +24,6 @@ db.once('open', () => {
   initializeProducts();
 });
 
-// Product Schema
-const productSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  description: { type: String, required: true },
-  price: { type: Number, required: true },
-  image: { type: String, required: true },
-  category: { type: String, required: true },
-  inStock: { type: Boolean, default: true }
-});
-
-const Product = mongoose.model('Product', productSchema);
-
-// Order Schema
-const orderSchema = new mongoose.Schema({
-  orderNumber: { type: String, required: true, unique: true },
-  customerInfo: {
-    name: { type: String, required: true },
-    email: { type: String, required: true },
-    phone: { type: String, required: true },
-    address: { type: String, required: true }
-  },
-  items: [{
-    productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
-    name: String,
-    price: Number,
-    quantity: Number,
-    total: Number
-  }],
-  shippingOption: { type: String, required: true },
-  shippingCost: { type: Number, required: true },
-  totalAmount: { type: Number, required: true },
-  orderDate: { type: Date, default: Date.now }
-});
-
-const Order = mongoose.model('Order', orderSchema);
-
 // Initialize sample products
 async function initializeProducts() {
   const count = await Product.countDocuments();
@@ -134,86 +98,6 @@ async function initializeProducts() {
     console.log('Sample products initialized');
   }
 }
-
-// Routes
-// Get all products
-app.get('/api/products', async (req, res) => {
-  try {
-    const products = await Product.find({ inStock: true });
-    res.json(products);
-  } catch (error) {
-    res.status(500).json({ message: 'שגיאה בטעינת המוצרים', error: error.message });
-  }
-});
-
-// Create order
-app.post('/api/orders', async (req, res) => {
-  try {
-    const { customerInfo, items, shippingOption } = req.body;
-
-    // Validate required fields
-    if (!customerInfo.name || !customerInfo.email || !customerInfo.phone || !customerInfo.address) {
-      return res.status(400).json({ message: 'כל השדות חובה' });
-    }
-
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(customerInfo.email)) {
-      return res.status(400).json({ message: 'פורמט אימייל לא תקין' });
-    }
-
-    // Validate items
-    if (!items || items.length === 0) {
-      return res.status(400).json({ message: 'העגלה ריקה' });
-    }
-
-    // Calculate shipping cost
-    let shippingCost = 0;
-    switch (shippingOption) {
-      case 'express':
-        shippingCost = 25;
-        break;
-      case 'standard':
-        shippingCost = 15;
-        break;
-      case 'free':
-        shippingCost = 0;
-        break;
-      case 'pickup':
-        shippingCost = 0;
-        break;
-      default:
-        shippingCost = 15;
-    }
-
-    // Calculate total
-    const itemsTotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const totalAmount = itemsTotal + shippingCost;
-
-    // Generate order number
-    const orderNumber = 'FL' + Date.now();
-
-    const order = new Order({
-      orderNumber,
-      customerInfo,
-      items,
-      shippingOption,
-      shippingCost,
-      totalAmount,
-    });
-
-    await order.save();
-
-    res.status(201).json({
-      message: 'ההזמנה התקבלה בהצלחה!',
-      orderNumber,
-      totalAmount
-    });
-
-  } catch (error) {
-    res.status(500).json({ message: 'שגיאה בעיבוד ההזמנה', error: error.message });
-  }
-});
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
