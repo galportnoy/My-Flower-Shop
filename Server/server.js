@@ -1,12 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const path = require('path');
+const Product = require('./models/Product');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
@@ -33,63 +32,63 @@ async function initializeProducts() {
         name: "זר כלה רומנטי",
         description: "זר כלה מרהיב עם ורדים לבנים וורודים",
         price: 299,
-        image: "/images/bridal-bouquet.jpg",
+        image: "images/bride.jpeg",
         category: "זרי כלה"
       },
       {
         name: "זר ראש השנה",
         description: "זר חגיגי עם חמניות וכלניות צבעוניות",
         price: 159,
-        image: "/images/new-year-bouquet.jpg",
+        image: "images/זר חגיגי עם חמניות וכלניות צבעוניות.jpg",
         category: "זרי חגים"
       },
       {
         name: "סידור שולחן אלגנטי",
         description: "סידור פרחים מעוצב לשולחן החג",
         price: 189,
-        image: "/images/table-arrangement.jpg",
+        image: "images/סידור פרחים מעוצב לשולחן החג.jpeg",
         category: "סידורי שולחן"
       },
       {
         name: "זר אבל מכובד",
         description: "זר חרציות לבנות לזכר הנפטר",
         price: 129,
-        image: "/images/mourning-bouquet.jpg",
+        image: "images/זר חרציות לבנות לזכר הנפטר.jpg",
         category: "זרי אבל"
       },
       {
         name: "ורדים אדומים",
         description: "תריסר ורדים אדומים טריים",
         price: 89,
-        image: "/images/red-roses.jpg",
+        image: "images/תריסר ורדים אדומים טריים.jpg",
         category: "ורדים"
       },
       {
         name: "צמח בית - סחלב",
         description: "סחלב לבן בעציץ קרמיקה יפה",
         price: 119,
-        image: "/images/orchid-plant.jpg",
+        image: "images/סחלב לבן בעציץ קרמיקה יפה.jpg",
         category: "צמחי בית"
       },
       {
         name: "זר יום הולדת צבעוני",
         description: "זר פרחים צבעוני ועליז ליום הולדת",
         price: 149,
-        image: "/images/birthday-bouquet.jpg",
+        image: "images/זר פרחים צבעוני ועליז ליום הולדת.jpg",
         category: "זרי יום הולדת"
       },
       {
         name: "זר אהבה מיוחד",
         description: "זר ורדים אדומים עם גרין טרי",
         price: 199,
-        image: "/images/love-bouquet.jpg",
+        image: "images/זר ורדים אדומים עם גרין טרי.jpg",
         category: "זרי אהבה"
       },
       {
         name: "חמניות שמחות",
         description: "זר חמניות צהובות מאירות פנים",
         price: 99,
-        image: "/images/sunflowers.jpg",
+        image: "images/זר חמניות צהובות מאירות פנים.jpg",
         category: "פרחי שדה"
       }
     ];
@@ -98,6 +97,9 @@ async function initializeProducts() {
     console.log('Sample products initialized');
   }
 }
+
+// Routes
+app.use('/api/products', require('./routes/products'));
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

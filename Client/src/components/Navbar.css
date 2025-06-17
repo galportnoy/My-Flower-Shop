@@ -82,6 +82,7 @@
 .cart-total {
   font-size: 12px;
   opacity: 0.9;
+  color: white;
 }
 
 @media (max-width: 768px) {
