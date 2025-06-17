@@ -73,7 +73,7 @@ const CheckoutPage = () => {
         shippingOption
       };
 
-      const response = await axios.post('/api/orders', orderData);
+      const response = await axios.post('http://localhost:5000/api/orders', orderData);
       
       setSuccess(`ההזמנה התקבלה בהצלחה! מספר הזמנה: ${response.data.orderNumber}`);
       clearCart();
@@ -83,6 +83,7 @@ const CheckoutPage = () => {
       }, 3000);
 
     } catch (err) {
+      console.error('Error submitting order:', err);
       setError(err.response?.data?.message || 'שגיאה בעיבוד ההזמנה');
     } finally {
       setLoading(false);

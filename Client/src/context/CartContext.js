@@ -28,39 +28,42 @@ const cartReducer = (state, action) => {
     case 'CLEAR_CART':
       return [];
 
-    case 'LOAD_CART':
-      return action.payload;
-
     default:
       return state;
   }
 };
 
 export const CartProvider = ({ children }) => {
-  const [cartItems, dispatch] = useReducer(cartReducer, []);
-
-  // Load cart from localStorage on mount
-  useEffect(() => {
-    const savedCart = localStorage.getItem('flowerShopCart');
-    if (savedCart) {
-      dispatch({ type: 'LOAD_CART', payload: JSON.parse(savedCart) });
+  const [cartItems, dispatch] = useReducer(cartReducer, [], () => {
+    try {
+      const savedCart = localStorage.getItem('flowerShopCart');
+      return savedCart ? JSON.parse(savedCart) : [];
+    } catch (error) {
+      console.error('Error loading cart from localStorage:', error);
+      return [];
     }
-  }, []);
+  });
 
-  // Save cart to localStorage whenever it changes
   useEffect(() => {
-    localStorage.setItem('flowerShopCart', JSON.stringify(cartItems));
+    try {
+      localStorage.setItem('flowerShopCart', JSON.stringify(cartItems));
+    } catch (error) {
+      console.error('Error saving cart to localStorage:', error);
+    }
   }, [cartItems]);
 
   const addToCart = (product) => {
+    if (!product) return;
     dispatch({ type: 'ADD_TO_CART', payload: product });
   };
 
   const updateQuantity = (id, quantity) => {
+    if (!id) return;
     dispatch({ type: 'UPDATE_QUANTITY', payload: { id, quantity } });
   };
 
   const removeFromCart = (id) => {
+    if (!id) return;
     dispatch({ type: 'REMOVE_FROM_CART', payload: id });
   };
 
@@ -69,25 +72,23 @@ export const CartProvider = ({ children }) => {
   };
 
   const getTotalItems = () => {
-    return cartItems.reduce((total, item) => total + item.quantity, 0);
+    return cartItems.reduce((total, item) => total + (item.quantity || 1), 0);
   };
 
   const getTotalPrice = () => {
-    return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
-  };
-
-  const value = {
-    cartItems,
-    addToCart,
-    updateQuantity,
-    removeFromCart,
-    clearCart,
-    getTotalItems,
-    getTotalPrice
+    return cartItems.reduce((total, item) => total + (item.price * (item.quantity || 1)), 0);
   };
 
   return (
-    <CartContext.Provider value={value}>
+    <CartContext.Provider value={{ 
+      cartItems, 
+      addToCart, 
+      updateQuantity, 
+      removeFromCart, 
+      clearCart,
+      getTotalItems,
+      getTotalPrice
+    }}>
       {children}
     </CartContext.Provider>
   );
