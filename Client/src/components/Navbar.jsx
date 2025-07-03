@@ -23,7 +23,9 @@ const Navbar = () => {
           <Link to="/" className="nav-link">
             בית
           </Link>
-          
+          <Link to="/order-lookup" className="nav-link">
+            חיפוש הזמנה
+          </Link>
           <div className="cart-icon-container">
             <button className="cart-button" onClick={toggleCart}>
               <span className="cart-icon">🛒</span>
