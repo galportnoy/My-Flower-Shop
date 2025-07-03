@@ -16,9 +16,6 @@ This is the server-side implementation for the Flower Shop project. The server i
   - `products.js`: Routes for product-related API endpoints.
   - `orders.js`: Routes for order-related API endpoints.
 
-- **config/**: Contains configuration files.
-  - `db.js`: Configuration for connecting to the MongoDB database.
-
 - `server.js`: The main server file that initializes the Express application and connects to the database.
 
 - `package.json`: Contains metadata about the server-side project, including dependencies and scripts.
