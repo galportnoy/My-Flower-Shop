@@ -1,12 +1,45 @@
-# React + Vite
+# Flower Shop Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the client-side implementation for the Flower Shop project.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Browse and search for flower products
+- Add products to a shopping cart
+- Checkout with customer details and shipping options
+- View order confirmation and order lookup page
+- Responsive and modern design
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+- Node.js (v16 or above)
+- npm
+
+### Installation
+
+```bash
+cd Client
+npm install
+```
+
+### Running the Client
+
+```bash
+npm start
+```
+
+The app will run by default on [http://localhost:3000](http://localhost:3000).
+
+### Connecting to the Server
+
+Make sure the server is running on [http://localhost:5000](http://localhost:5000) for API requests.
+
+## Folder Structure
+
+- `src/components` - React components (Navbar, ProductCard, ShoppingCart, OrderLookUp, etc.)
+- `src/pages` - Main pages (HomePage, CheckoutPage)
+- `src/context` - React context for cart management
+- `public` - Static assets
+
