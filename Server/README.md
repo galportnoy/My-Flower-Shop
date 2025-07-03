@@ -48,6 +48,7 @@ The server will run on `http://localhost:5000` (or the port specified in your co
 
 - **Products**
   - `GET /api/products`: Retrieve all products.
+  
 
 - **Orders**
   - `POST /api/orders`: Create a new order.

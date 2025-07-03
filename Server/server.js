@@ -4,6 +4,7 @@ const cors = require('cors');
 
 const Product = require('./models/Product');
 const ordersRouter = require('./routes/orders');
+const productsRouter = require('./routes/products');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -48,7 +49,7 @@ async function initializeProducts() {
 }
 
 // Routes
-app.use('/api/products', require('./routes/products'));
+app.use('/api/products', productsRouter);
 app.use('/api/orders', ordersRouter);
 
 
