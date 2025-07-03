@@ -48,16 +48,12 @@ The server will run on `http://localhost:5000` (or the port specified in your co
 
 - **Products**
   - `GET /api/products`: Retrieve all products.
-  - `GET /api/products/:id`: Retrieve a specific product by ID.
 
 - **Orders**
   - `POST /api/orders`: Create a new order.
-  - `GET /api/orders/:id`: Retrieve a specific order by ID.
+  - `POST /api/orders/lookup`: Retrieve a specific order by ID and Customer phone number.
 
 ## Database
 
-This project uses MongoDB as the database. Ensure that you have MongoDB installed and running, and update the connection string in `config/db.js` as necessary.
+This project uses MongoDB as the database. Ensure that you have MongoDB installed and running, and update the connection string in `server.js` as necessary.
 
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for more details.
