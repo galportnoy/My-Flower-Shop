@@ -112,7 +112,7 @@ exports.createOrder = async (req, res) => {
   }
 };
 
-// Get order by ID
+// Get order by ID and phone number
 exports.getOrder = async (req, res) => {
     try {
         const {orderNumber, phoneNumber} = req.body;
