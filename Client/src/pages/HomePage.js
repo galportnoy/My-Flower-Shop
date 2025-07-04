@@ -57,6 +57,17 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+      <footer className="footer">
+      <div className="about-footer"> 
+        <p>© 2025 פרחי הגן. כל הזכויות שמורות.</p>
+        <p>טלפון: 123-456-7890 | דוא"ל:
+          <a href="mailto: garden-flowers@gmail.com"> garden-flowers@gmail.com </a>
+        </p>
+        <p>כתובת: רחוב הפרחים 123, תל אביב</p>  
+        </div>
+      </footer>
+
     </div>
   );
 };
