@@ -4,14 +4,7 @@ const Order = require('../models/Order');
 exports.createOrder = async (req, res) => {
   try {
     const { customerInfo, items, shippingOption } = req.body;
-
-    // Log the received data
-    console.log('Received order data:', {
-      customerInfo,
-      items,
-      shippingOption
-    });
-
+   
     // Validate customerInfo exists
     if (!customerInfo) {
       return res.status(400).json({ message: 'פרטי לקוח חסרים' });
@@ -81,7 +74,7 @@ exports.createOrder = async (req, res) => {
     });
 
     const savedOrder = await order.save();
-    console.log('Order saved successfully:', savedOrder);
+    // console.log('Order saved successfully:', savedOrder);
 
     res.status(201).json({ 
       message: 'ההזמנה נשמרה בהצלחה',

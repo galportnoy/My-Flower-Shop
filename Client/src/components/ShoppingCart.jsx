@@ -56,7 +56,7 @@ const ShoppingCart = ({ isOpen, onClose }) => {
               </div>
               
               <div className="cart-footer">
-                <div className="cart-total">
+                <div className="cart-summary">
                   <strong>סה"כ: ₪{getTotalPrice()}</strong>
                 </div>
                 <Link to="/checkout" className="checkout-btn" onClick={onClose}>

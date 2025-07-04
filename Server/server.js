@@ -15,7 +15,7 @@ app.use(express.static('public'));
 
 
 // MongoDB Connection
-mongoose.connect('mongodb://localhost:27017/flower-shop', {
+mongoose.connect('mongodb://localhost:27017/flower-shopDB', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });

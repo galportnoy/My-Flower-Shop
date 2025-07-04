@@ -16,7 +16,12 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="nav-container">
         <Link to="/" className="nav-logo">
-          🌸 פרחי הגן
+          <img 
+            src="flower_shop_icon.png" 
+            alt="logo" 
+            className="nav-logo-icon"
+          />
+          <span className="nav-logo-text">פרחי הגן</span>
         </Link>
         
         <div className="nav-menu">

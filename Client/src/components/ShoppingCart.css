@@ -142,11 +142,11 @@
   background-color: #f8f9fa;
 }
 
-.cart-total {
-  font-size: 20px;
-  margin-bottom: 15px;
+.cart-summary {
+  font-size: 18px;
   text-align: center;
   color: #2e7d32;
+  margin-bottom: 15px;
 }
 
 .checkout-btn {

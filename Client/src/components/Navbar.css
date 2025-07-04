@@ -77,13 +77,18 @@
 
 .cart-count {
   font-weight: bold;
-  color: black;
+  color: white;
 }
 
 .cart-total {
   font-size: 12px;
   opacity: 0.9;
-  color: #000000;
+  color: white;
+}
+
+.nav-logo-icon{
+  width: 45px;
+  height: 45px;
 }
 
 @media (max-width: 768px) {

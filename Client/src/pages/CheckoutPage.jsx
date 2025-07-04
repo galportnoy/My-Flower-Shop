@@ -93,7 +93,7 @@ const CheckoutPage = () => {
   if (cartItems.length === 0 && !success) {
     return (
       <div className="checkout-page">
-        <div className="container">
+        <div className="empty-cart">
           <h1>העגלה ריקה</h1>
           <p>אין מוצרים בעגלה. חזור לעמוד הבית כדי להוסיף מוצרים.</p>
           <button onClick={() => navigate('/')} className="btn-primary">
