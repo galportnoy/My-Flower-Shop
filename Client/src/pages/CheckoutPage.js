@@ -78,10 +78,6 @@ const CheckoutPage = () => {
       setSuccess(`ההזמנה התקבלה בהצלחה! מספר הזמנה: ${response.data.orderNumber}`);
       clearCart();
       
-      setTimeout(() => {
-        navigate('/');
-      }, 3000);
-
     } catch (err) {
       console.error('Error submitting order:', err);
       setError(err.response?.data?.message || 'שגיאה בעיבוד ההזמנה');
@@ -116,7 +112,9 @@ const CheckoutPage = () => {
         {success ? (
           <div className="success-message">
             <h2>✅ {success}</h2>
-            <p>תועבר לעמוד הבית בעוד מספר שניות...</p>
+            <button onClick={() => navigate('/')} className="btn-primary">
+            חזור לעמוד הבית
+      </button>
           </div>
         ) : (
           <>
@@ -192,7 +190,7 @@ const CheckoutPage = () => {
 
                 <div className="form-group">
                   <label>כתובת משלוח *</label>
-                  <textarea
+                  <input
                     name="address"
                     value={customerInfo.address}
                     onChange={handleInputChange}
