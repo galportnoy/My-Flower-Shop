@@ -4,14 +4,21 @@ import { useCart } from '../context/CartContext';
 import ShoppingCart from './ShoppingCart';
 import './Navbar.css';
 
+/**
+ *  Navbar component that displays the navigation bar with links to home and order lookup,
+ *  and a shopping cart icon that shows the total items and price.
+ */
+
 const Navbar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { getTotalItems, getTotalPrice } = useCart();
 
+  
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
   };
 
+  
   return (
     <nav className="navbar">
       <div className="nav-container">

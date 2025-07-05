@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import './ShoppingCart.css';
 
+// ShoppingCart component to display the shopping cart overlay
+// It shows the items in the cart, allows quantity updates, and provides a checkout link to the checkout page
+// Includes functionality to remove items from the cart and calculate the total price
+
 const ShoppingCart = ({ isOpen, onClose }) => {
   const { cartItems, updateQuantity, removeFromCart, getTotalPrice } = useCart();
 

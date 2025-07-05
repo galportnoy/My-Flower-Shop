@@ -1,7 +1,14 @@
+/**
+ * This file defines a context for managing the shopping cart state
+ */ 
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
 
 const CartContext = createContext();
 
+/**
+ * Reducer function to manage the cart state.
+ * Handles actions like adding items, updating quantities, removing items, and clearing the cart.
+ */
 const cartReducer = (state, action) => {
   switch (action.type) {
     case 'ADD_TO_CART':
@@ -93,6 +100,7 @@ export const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
+
 
 export const useCart = () => {
   const context = useContext(CartContext);

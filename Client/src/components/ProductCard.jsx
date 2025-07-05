@@ -2,6 +2,9 @@ import React from 'react';
 import { useCart } from '../context/CartContext';
 import './ProductCard.css';
 
+// ProductCard component to display individual product details
+// and handle adding the product to the cart
+
 const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
 

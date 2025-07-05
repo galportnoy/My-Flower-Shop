@@ -8,6 +8,8 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Fetch products when the component mounts
+  // This effect runs once when the component is first rendered
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -47,6 +49,7 @@ const HomePage = () => {
         </div>
       </section>
 
+      { /* Products Section: displays a grid of product cards using the ProductCard components witch the data fetched from the serve*/ }
       <section className="products-section">
         <div className="container">
           <h2>המוצרים שלנו</h2>

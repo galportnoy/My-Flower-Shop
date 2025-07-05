@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import './OrderLookUp.css';
 
+// This component allows users to look up their order details by entering an order number and phone number.
+// It fetches order data from the server and displays it in a user-friendly format.
+
 function OrderLookup() {
   const [orderNumber, setOrderNumber] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -14,6 +17,7 @@ function OrderLookup() {
     setError(null);
     setOrderData(null);
 
+    // fatch request to the server to look up the order
     try {
       const response = await fetch('http://localhost:5000/api/orders/lookup', {
         method: 'POST',
@@ -55,6 +59,7 @@ function OrderLookup() {
 
       {error && <p className="order-lookup-error">{error}</p>}
 
+      {/* Display order details if available */}
       {orderData && (
         <div className="order-lookup-results">
           <h3>פרטי הזמנה #{orderData.orderNumber}</h3>

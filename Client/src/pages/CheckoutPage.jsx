@@ -4,6 +4,10 @@ import axios from 'axios';
 import { useCart } from '../context/CartContext';
 import './CheckoutPage.css';
 
+/**
+ *  CheckoutPage component handles the checkout process for the shopping cart.
+ *  It allows users to enter their details, select a shipping option, and submit their order
+ */
 const CheckoutPage = () => {
   const navigate = useNavigate();
   const { cartItems, getTotalPrice, clearCart } = useCart();
@@ -27,6 +31,8 @@ const CheckoutPage = () => {
     pickup: { label: 'איסוף עצמי', cost: 0 }
   };
 
+  // Handle input changes for customer information
+  // Updates the customerInfo state with the input values
   const handleInputChange = (e) => {
     setCustomerInfo({
       ...customerInfo,
@@ -34,6 +40,7 @@ const CheckoutPage = () => {
     });
   };
 
+  // Handle shipping option changes
   const handleShippingChange = (e) => {
     setShippingOption(e.target.value);
   };
@@ -48,6 +55,11 @@ const CheckoutPage = () => {
     return null;
   };
 
+  /**
+   * Handles the form submission for the checkout process.
+   * Validates the form, sends the order data to the server,
+   * and updates the UI based on the response.
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     
