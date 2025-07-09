@@ -7,6 +7,9 @@ import CheckoutPage from './pages/CheckoutPage';
 import OrderLookUp from './components/OrderLookUp';
 import './App.css';
 
+/**
+ * The main App component that sets up the application with routing and context provider.
+ */
 function App() {
   return (
     <CartProvider>
